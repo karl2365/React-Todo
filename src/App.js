@@ -29,7 +29,9 @@ class App extends React.Component {
 
   handleChanges = e => {
     this.setState({
-      task: e.target.value
+      task: e.target.value,
+      id: Date.now(),
+      completed: false
     })
   }
 
