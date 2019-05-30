@@ -15,6 +15,9 @@ class App extends React.Component {
       completed: false
     }
   }
+
+
+
   addTodo = e => {
     e.preventDefault();
     const newTodo = {
@@ -23,13 +26,42 @@ class App extends React.Component {
       completed: false
     }
     this.setState({
-      taskData: [...this.state.taskData, newTodo]
+      taskData: [...this.state.taskData, newTodo],
+      task: ''
     });
   }
 
+  toggleTask = id => {
+    this.setState(prevState => {
+      return {
+        taskData: prevState.taskData.map(item => {
+          if (item.id === id) {
+            return{
+              ...item, 
+              completed: !item.completed
+
+            }
+          } else{
+            return item;
+          }
+          
+        })
+      };
+    });
+  };
+
+  clearCompleted = () => {
+      this.setState(prevState => {
+        return{
+          taskData: prevState.taskData.filter(item => item.completed === false )
+        }
+      });
+  };
+
+
   handleChanges = e => {
     this.setState({
-      task: e.target.value,
+      [e.target.name]: e.target.value,
       id: Date.now(),
       completed: false
     })
@@ -39,18 +71,14 @@ class App extends React.Component {
 
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
+        <h2>Welcome to my Todo App!</h2>
         <div className="todo-list">
           {this.state.taskData.map(task => (
-              <Todo task={task} />
+              <Todo task={task} toggleTask={this.toggleTask} key={task.id}/>
           ))}
         </div>
-            <TodoForm submit={this.addTodo} change={this.handleChanges} value={this.state.task} />
-      {/* <form onSubmit={this.addTodo}>
-            <input placeholder="todo" onChange={this.handleChanges} value={this.state.task} />
-            <button type="submit">Add Todo</button>
-            <button onclick="#">Clear Completed</button>
-        </form>   */}
+            <TodoForm submit={this.addTodo} clearCompleted={this.clearCompleted} change={this.handleChanges} value={this.state.task} />
+      
       </div>
     );
   }

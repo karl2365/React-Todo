@@ -4,12 +4,12 @@
  export const data = [
     {
         task: 'Organize Garage',
-        id: Date.now(),
+        id: 12365,
         completed: false
     },
     {
         task: 'Bake Cookies',
-        id: Date.now(),
+        id: 56867,
         completed: false
     }
 ]
