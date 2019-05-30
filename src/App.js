@@ -27,7 +27,9 @@ class App extends React.Component {
     }
     this.setState({
       taskData: [...this.state.taskData, newTodo],
-      task: ''
+      task: '',
+      id: Date.now(),
+      completed: false
     });
   }
 
