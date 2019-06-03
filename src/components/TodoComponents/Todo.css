@@ -1,0 +1,27 @@
+
+.todo {
+    cursor: pointer;
+    font-family: sans-serif;
+
+    /* display: flex; 
+    align-items: center;
+    padding: 10px;
+    width: 200px;
+    border-radius: 10px;
+    margin: 5px 0 5px 0;
+    background: #00cccc; */
+   
+
+}
+
+.todo.completed {
+    text-decoration: line-through;
+    /* cursor: pointer; */
+}
+
+
+form button {
+    background: #00cccc;
+    margin: 5px;
+    border-radius: 5px;
+}
